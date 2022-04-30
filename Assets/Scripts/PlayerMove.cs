@@ -6,8 +6,9 @@ public class PlayerMove : MonoBehaviour
 {
 
     public CharacterController characterController;
-    Vector3 move;
     public float speed = 2;
+    Vector3 move;
+    public GameObject cam;
     void Start()
     {
         
@@ -17,6 +18,9 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        move = cam.transform.TransformDirection(move);
+
         characterController.SimpleMove(move* speed);
     }
 
